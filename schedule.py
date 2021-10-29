@@ -3,6 +3,7 @@
 import argparse
 import csv
 import os
+import sys
 
 DEBUG_MODE=False
 try:
@@ -10,11 +11,20 @@ try:
 except:
     pass
 
+FIND_ONE=True
+try:
+    FIND_ONE = os.environ['FIND_ONE']
+except:
+    pass
+
+
 parser = argparse.ArgumentParser(description='Script for determining the optimal student-teacher schedule.')
 parser.add_argument('csv_filename', type=str, help='Required filename of CSV file of students and their teachers.')
+parser.add_argument('max_timeslots', type=int, help='Required max acceptable timeslots - the lower this number, the faster this will run.')
 
 args = parser.parse_args()
 filename = args.csv_filename
+current_max = args.max_timeslots
 
 student_teacher_dict = {}
 all_teachers = set()
@@ -27,80 +37,147 @@ with open(filename, newline='') as student_teacher_csv:
         all_teachers = all_teachers.union(teachers_for_student)
         student_teacher_dict[student] = set(teachers_for_student)
 
+all_students = set(student_teacher_dict.keys())
+
 def debug(message):
     if DEBUG_MODE:
         print(message)
 
 debug(student_teacher_dict)
 
-def determine_available_teachers(timeslot):
-    busy_teachers = set()
-    for student in timeslot:
-        busy_teachers = busy_teachers.union(student_teacher_dict[student])
-    return all_teachers - busy_teachers
+class Timeslot:
+    
+    students = []
+    
+    def __init__(self, students):
+      self.students = students
+    
+    def __str__(self):
+        return f'Timeslot: {self.students}'
 
-def student_fits_in(student,timeslot):
-    available_teachers = determine_available_teachers(timeslot)
-    return student_teacher_dict[student].issubset(available_teachers)
+    def add_student(self,student):
+        self.students.append(student)
 
-# def clean_singular_list(schedule):
-#     debug(f'Cleaning {schedule}')
-#     if not schedule:
-#         return schedule
-#     for x in schedule:
-#         if len(x) != 1:
-#             debug('fd')
-#             return schedule
-#     wrapped_list = []
-#     print(f'Wrapping {schedule}')
-#     wrapped_list.append(schedule)
-#     print(f'Wrapped list: {wrapped_list}')
-#     return wrapped_list
+    def determine_available_teachers(self):
+        busy_teachers = set()
+        for student in self.students:
+            busy_teachers = busy_teachers.union(student_teacher_dict[student])
+        return all_teachers - busy_teachers
 
-def calc_possible_schedules(schedule, students):
+    def copy(self):
+        debug(self.students)
+        copy_of_self = Timeslot(self.students.copy())
+        return copy_of_self
+
+
+class Schedule:
+    
+    timeslots = []
+    
+    def __init__(self):
+        pass
+    
+    def __str__(self):
+        return "Schedule: \n" + '\n'.join([str(t) for t in self.timeslots])
+
+    def determine_possible_timeslots_for(self,student):
+        possible_timeslots = []
+        for ts in self.timeslots:
+            available_teachers = ts.determine_available_teachers()
+            if student_teacher_dict[student].issubset(available_teachers):
+                possible_timeslots.append(ts)
+        return possible_timeslots
+
+    def add_to(self,student,timeslot):
+        self.timeslots.remove(timeslot)
+        new_timeslot = timeslot.copy()
+        new_timeslot.add_student(student)
+        self.timeslots.append(new_timeslot)
+
+    def add(self,timeslot):
+        self.timeslots.append(timeslot)
+
+    def set(self, timeslots):
+        self.timeslots = timeslots
+
+    def copy(self):
+        copy_of_self = Schedule()
+        copy_of_self.set(self.timeslots.copy())
+        return copy_of_self
+    
+    def num_timeslots(self):
+        return len(self.timeslots)
+
+
+def remove_non_min_length(possible_schedules):
+    global current_max
+    current_min = len(all_students)
+    for sched in possible_schedules:
+        if sched.num_timeslots() < current_min:
+            current_min = sched.num_timeslots()
+    if current_min < current_max:
+        current_max = current_min
+        print(f'New current max is {current_max}')
+    min_scheds = []
+    for sched in possible_schedules:
+        if sched.num_timeslots() <= current_min:
+            min_scheds.append(sched)
+    return min_scheds
+
+
+min_students=current_max
+
+def calc_possible_schedules(schedule : Schedule, students : list):
+    global min_students
+    if len(students) < min_students:
+        min_students = len(students)
+        print(f'Closest we\'ve come: {min_students}')
+    
+    if len(students) == 0:
+        if FIND_ONE == True:
+            print(f'Found schedule with {schedule.num_timeslots()} timeslots')
+            print(schedule)
+            sys.exit(0)
+        else:
+            return [schedule]
+    
+    if schedule.num_timeslots() > current_max:
+        debug("skip - won't be better")
+        return []
+
     debug(f'Schedule so far: {schedule}')
     debug(f'Students left to schedule: {students}')
-
-    if len(students) == 0:
-        debug(f'COMPLETE: Schedule {schedule} is complete!')
-        return schedule
 
     possible_schedules = []
     student = students.pop()
     debug(f'Scheduling student {student}...')
-    for timeslot in schedule:
-        if student_fits_in(student,timeslot):
-            possible_schedule = schedule.copy()
-            possible_schedule.remove(timeslot)
-            updated_timeslot = timeslot.copy()
-            updated_timeslot.append(student)
-            possible_schedule.append(updated_timeslot)
-            new_possible_schedules = calc_possible_schedules(possible_schedule,students.copy())
-            debug(f'New possible schedules (found timeslot fit): {new_possible_schedules}')
-            possible_schedules.append(new_possible_schedules)
-    possible_schedule = schedule.copy()
-    new_timeslot = []
-    new_timeslot.append(student)
-    possible_schedule.append(new_timeslot)
-    debug(f'Calc possible schedules for {possible_schedule}')
-    new_possible_schedules = calc_possible_schedules(possible_schedule,students.copy())
-    debug(f'New possible schedules (new timeslot): {new_possible_schedules}')
-    # possible_schedule = clean_singular_list(new_possible_schedules)
-    debug(f'Before extension: {possible_schedules}')
-    possible_schedules.extend(new_possible_schedules)
-    debug(f'After extension: {possible_schedules}')
-    return possible_schedules
+    for possible_timeslot in schedule.determine_possible_timeslots_for(student):
+        possible_schedule = schedule.copy()
+        possible_schedule.add_to(student,possible_timeslot)
+        new_possible_schedules = calc_possible_schedules(possible_schedule,students.copy())
+        debug(f'New possible schedules (found timeslot fit): {new_possible_schedules}')
+        possible_schedules.extend(new_possible_schedules)
+    if schedule.num_timeslots() < current_max:
+        possible_schedule = schedule.copy()
+        new_timeslot = Timeslot([student])
+        possible_schedule.add(new_timeslot)
+        debug(f'Calc possible schedules for {possible_schedule}')
+        new_possible_schedules = calc_possible_schedules(possible_schedule,students.copy())
+        debug(f'New possible schedules (new timeslot): {new_possible_schedules}')
+        possible_schedules.extend(new_possible_schedules)
+    return remove_non_min_length(possible_schedules)
             
 
-original_output = calc_possible_schedules([],list(student_teacher_dict.keys()))
-debug(f'Output: {original_output}')
-debug(f'Length of ouput: {len(original_output)}')
-output = []
-for o in original_output:
-    debug(f'Cleaning {o}...')
-    if len(o) != 1:
-        output.append(o)
-# debug(f'Output: {output}')
-print(f'Found {len(output)} possible schdules:')
-for option in output:
-    print(option)
+# ts1 = Timeslot(["A"])
+# ts2 = Timeslot(["B"])
+# s = Schedule()
+# s2 = Schedule()
+# possible_sc = [s,s2]
+# print(possible_sc)
+
+output = calc_possible_schedules(Schedule(),list(student_teacher_dict.keys()))
+print('Possible schedules (minimal number of timeslots):')
+print()
+for possible_schedule in output:
+    print(possible_schedule)
+    print()
