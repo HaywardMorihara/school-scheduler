@@ -168,13 +168,6 @@ def calc_possible_schedules(schedule : Schedule, students : list):
     return remove_non_min_length(possible_schedules)
             
 
-# ts1 = Timeslot(["A"])
-# ts2 = Timeslot(["B"])
-# s = Schedule()
-# s2 = Schedule()
-# possible_sc = [s,s2]
-# print(possible_sc)
-
 output = calc_possible_schedules(Schedule(),list(student_teacher_dict.keys()))
 print('Possible schedules (minimal number of timeslots):')
 print()

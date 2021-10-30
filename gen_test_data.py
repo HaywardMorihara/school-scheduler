@@ -16,4 +16,4 @@ num_teachers = args.num_teachers
 with open('gen_sample.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
     for i in range(1,num_students+1):
-        writer.writerow([f'Student {i}', f'Teacher {randint(1,num_teachers)}', f'Teacher {randint(1,num_teachers)}', f'Teacher {randint(1,num_teachers)}', f'Teacher {randint(1,num_teachers)}'] )
+        writer.writerow([f'Student {i}', f'Reading Teacher {randint(1,num_teachers)}', f'English Teacher {randint(1,num_teachers)}', f'Math Teacher {randint(1,num_teachers)}', f'Science Teacher {randint(1,num_teachers)}', f'Social Studies teacher {randint(1,num_teachers)}'] )

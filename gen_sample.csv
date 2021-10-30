@@ -1,16 +1,50 @@
-Student 1,Teacher 4,Teacher 9,Teacher 14,Teacher 12
-Student 2,Teacher 15,Teacher 19,Teacher 12,Teacher 7
-Student 3,Teacher 7,Teacher 5,Teacher 20,Teacher 5
-Student 4,Teacher 20,Teacher 9,Teacher 14,Teacher 3
-Student 5,Teacher 17,Teacher 4,Teacher 19,Teacher 2
-Student 6,Teacher 7,Teacher 1,Teacher 5,Teacher 2
-Student 7,Teacher 10,Teacher 8,Teacher 14,Teacher 20
-Student 8,Teacher 11,Teacher 4,Teacher 13,Teacher 10
-Student 9,Teacher 8,Teacher 14,Teacher 17,Teacher 13
-Student 10,Teacher 9,Teacher 9,Teacher 5,Teacher 17
-Student 11,Teacher 10,Teacher 7,Teacher 2,Teacher 13
-Student 12,Teacher 14,Teacher 5,Teacher 11,Teacher 12
-Student 13,Teacher 10,Teacher 3,Teacher 20,Teacher 16
-Student 14,Teacher 8,Teacher 7,Teacher 16,Teacher 5
-Student 15,Teacher 1,Teacher 18,Teacher 11,Teacher 4
-Student 16,Teacher 5,Teacher 10,Teacher 1,Teacher 8
+Student 1,Reading Teacher 5,English Teacher 3,Math Teacher 2,Science Teacher 2,Social Studies teacher 3
+Student 2,Reading Teacher 4,English Teacher 4,Math Teacher 5,Science Teacher 1,Social Studies teacher 2
+Student 3,Reading Teacher 1,English Teacher 3,Math Teacher 5,Science Teacher 5,Social Studies teacher 3
+Student 4,Reading Teacher 2,English Teacher 3,Math Teacher 2,Science Teacher 2,Social Studies teacher 2
+Student 5,Reading Teacher 5,English Teacher 3,Math Teacher 3,Science Teacher 5,Social Studies teacher 2
+Student 6,Reading Teacher 2,English Teacher 2,Math Teacher 4,Science Teacher 3,Social Studies teacher 3
+Student 7,Reading Teacher 5,English Teacher 1,Math Teacher 3,Science Teacher 1,Social Studies teacher 4
+Student 8,Reading Teacher 4,English Teacher 3,Math Teacher 1,Science Teacher 4,Social Studies teacher 2
+Student 9,Reading Teacher 3,English Teacher 3,Math Teacher 1,Science Teacher 5,Social Studies teacher 2
+Student 10,Reading Teacher 5,English Teacher 3,Math Teacher 4,Science Teacher 1,Social Studies teacher 1
+Student 11,Reading Teacher 4,English Teacher 4,Math Teacher 1,Science Teacher 4,Social Studies teacher 4
+Student 12,Reading Teacher 5,English Teacher 2,Math Teacher 3,Science Teacher 3,Social Studies teacher 3
+Student 13,Reading Teacher 2,English Teacher 5,Math Teacher 2,Science Teacher 5,Social Studies teacher 1
+Student 14,Reading Teacher 5,English Teacher 3,Math Teacher 2,Science Teacher 2,Social Studies teacher 3
+Student 15,Reading Teacher 4,English Teacher 3,Math Teacher 5,Science Teacher 4,Social Studies teacher 4
+Student 16,Reading Teacher 1,English Teacher 5,Math Teacher 2,Science Teacher 1,Social Studies teacher 5
+Student 17,Reading Teacher 3,English Teacher 1,Math Teacher 2,Science Teacher 1,Social Studies teacher 5
+Student 18,Reading Teacher 1,English Teacher 5,Math Teacher 2,Science Teacher 3,Social Studies teacher 2
+Student 19,Reading Teacher 3,English Teacher 3,Math Teacher 2,Science Teacher 4,Social Studies teacher 5
+Student 20,Reading Teacher 4,English Teacher 5,Math Teacher 4,Science Teacher 3,Social Studies teacher 2
+Student 21,Reading Teacher 3,English Teacher 5,Math Teacher 2,Science Teacher 4,Social Studies teacher 4
+Student 22,Reading Teacher 5,English Teacher 2,Math Teacher 3,Science Teacher 2,Social Studies teacher 3
+Student 23,Reading Teacher 3,English Teacher 1,Math Teacher 1,Science Teacher 2,Social Studies teacher 3
+Student 24,Reading Teacher 4,English Teacher 2,Math Teacher 5,Science Teacher 4,Social Studies teacher 2
+Student 25,Reading Teacher 5,English Teacher 4,Math Teacher 2,Science Teacher 1,Social Studies teacher 2
+Student 26,Reading Teacher 5,English Teacher 5,Math Teacher 1,Science Teacher 3,Social Studies teacher 1
+Student 27,Reading Teacher 5,English Teacher 5,Math Teacher 3,Science Teacher 2,Social Studies teacher 1
+Student 28,Reading Teacher 2,English Teacher 5,Math Teacher 1,Science Teacher 2,Social Studies teacher 3
+Student 29,Reading Teacher 2,English Teacher 3,Math Teacher 2,Science Teacher 3,Social Studies teacher 3
+Student 30,Reading Teacher 4,English Teacher 4,Math Teacher 5,Science Teacher 3,Social Studies teacher 3
+Student 31,Reading Teacher 3,English Teacher 2,Math Teacher 2,Science Teacher 1,Social Studies teacher 5
+Student 32,Reading Teacher 3,English Teacher 3,Math Teacher 4,Science Teacher 5,Social Studies teacher 1
+Student 33,Reading Teacher 1,English Teacher 3,Math Teacher 4,Science Teacher 1,Social Studies teacher 3
+Student 34,Reading Teacher 3,English Teacher 5,Math Teacher 4,Science Teacher 1,Social Studies teacher 5
+Student 35,Reading Teacher 4,English Teacher 3,Math Teacher 2,Science Teacher 3,Social Studies teacher 1
+Student 36,Reading Teacher 2,English Teacher 3,Math Teacher 1,Science Teacher 3,Social Studies teacher 2
+Student 37,Reading Teacher 1,English Teacher 1,Math Teacher 4,Science Teacher 4,Social Studies teacher 4
+Student 38,Reading Teacher 3,English Teacher 1,Math Teacher 5,Science Teacher 4,Social Studies teacher 4
+Student 39,Reading Teacher 4,English Teacher 1,Math Teacher 3,Science Teacher 1,Social Studies teacher 1
+Student 40,Reading Teacher 1,English Teacher 4,Math Teacher 4,Science Teacher 1,Social Studies teacher 5
+Student 41,Reading Teacher 3,English Teacher 2,Math Teacher 3,Science Teacher 2,Social Studies teacher 4
+Student 42,Reading Teacher 1,English Teacher 1,Math Teacher 3,Science Teacher 1,Social Studies teacher 2
+Student 43,Reading Teacher 3,English Teacher 3,Math Teacher 2,Science Teacher 1,Social Studies teacher 3
+Student 44,Reading Teacher 5,English Teacher 5,Math Teacher 3,Science Teacher 4,Social Studies teacher 1
+Student 45,Reading Teacher 1,English Teacher 3,Math Teacher 4,Science Teacher 1,Social Studies teacher 5
+Student 46,Reading Teacher 4,English Teacher 1,Math Teacher 4,Science Teacher 3,Social Studies teacher 5
+Student 47,Reading Teacher 5,English Teacher 3,Math Teacher 1,Science Teacher 4,Social Studies teacher 4
+Student 48,Reading Teacher 2,English Teacher 4,Math Teacher 4,Science Teacher 3,Social Studies teacher 4
+Student 49,Reading Teacher 3,English Teacher 3,Math Teacher 1,Science Teacher 4,Social Studies teacher 5
+Student 50,Reading Teacher 1,English Teacher 1,Math Teacher 3,Science Teacher 2,Social Studies teacher 4
